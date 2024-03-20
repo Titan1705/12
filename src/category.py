@@ -12,3 +12,11 @@ class Category:
     @property
     def product(self):
         return self.__product
+
+    @property
+    def products(self):
+        list_of_products = []
+        for product in self.__product:
+            list_of_products.append(f"{product.name}, {product.price} руб. "
+                                    f"Остаток: {product.availability} шт.")
+        return list_of_products
