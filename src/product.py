@@ -9,7 +9,7 @@ class Product:
     def __init__(self, name, description, price, availability):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.availability = availability
 
         self.products_list.append(self)
@@ -22,7 +22,7 @@ class Product:
         availability = dict_with_prod['quantity']
         for product in Product.products_list:
             if product.name == name:
-                product.availability += availability
+                product.quantity += availability
                 if product.price < price:
                     product.price = price
                 return None
@@ -36,10 +36,5 @@ class Product:
     def price(self, value):
         if value <= "0":
             print('Новая цена не соответствует условиям')
-        elif value < self.__price:
-            confirm = input("Новая цена ниже текущей. Для подтверждения "
-                            "введите 'y'")
-            if confirm == 'y':
-                self.__price = value
         else:
             self.__price = value
