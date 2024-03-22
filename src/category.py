@@ -27,3 +27,5 @@ class Category:
     def __repr__(self):
         return (f"Категория - {self.name}, описание - {self.description},"
                 f" продукты - {self.__products}|")
+
+
