@@ -12,8 +12,6 @@ class Product:
         self.__price = price
         self.availability = availability
 
-        self.products_list.append(self)
-
     @classmethod
     def init_new_product(cls, dict_with_prod, category):
         name = dict_with_prod['name']
@@ -34,7 +32,7 @@ class Product:
 
     @price.setter
     def price(self, value):
-        if value <= "0":
+        if value <= 0:
             print('Новая цена не соответствует условиям')
         else:
             self.__price = value
