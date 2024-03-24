@@ -1,24 +1,19 @@
 import pytest
 from src.category import Category
+from tests.test_product import product_test
 
 
 @pytest.fixture()
-def Category_Phone():
-    return Category('nokia', 'plastic', '6230i')
+def category_test(product_test):
+    return Category("Смартфоны", "Современные", [product_test])
 
 
-def test_init(Category_Phone):
-    assert Category_Phone.name == 'nokia'
-    assert Category_Phone.description == 'plastic'
-    # assert Category_Phone.products[] == "tv"
-    assert Category_Phone.number_of_categories == 1
-    assert Category_Phone.unique_product == Category.unique_product
+def test_init(category_test):
+    assert category_test.name == 'Смартфоны'
+    assert category_test.description == 'Современные'
+    assert category_test.product == ['Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.']
+    assert category_test.number_of_categories == 1
+    assert category_test.unique_product == Category.unique_product
 
 
-def test_product_getter(for_category):
-    products = ['tv, 45000 руб. Остаток: 1 шт.']
-    assert for_category.products == products
 
-
-def test_repr(for_category, print_repr=None):
-    assert for_category.__repr__() == print_repr
