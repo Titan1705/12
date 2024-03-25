@@ -13,18 +13,20 @@ class Product:
         self.availability = availability
 
     @classmethod
-    def init_new_product(cls, dict_with_prod, category):
-        name = dict_with_prod['name']
-        description = dict_with_prod['description']
-        price = dict_with_prod['price']
-        availability = dict_with_prod['quantity']
-        for product in Product.products_list:
-            if product.name == name:
-                product.quantity += availability
-                if product.price < price:
-                    product.price = price
-                return None
-        category.add_product(cls(name, description, price, availability))
+    def init_new_product(cls, product_data, list_of_products=None):
+        name = product_data['name']
+        description = product_data['description']
+        price = product_data['price']
+        availability = product_data['availability']
+        if list_of_products:
+            for product in list_of_products:
+                if product.name == name:
+                    product.quantity += availability
+                    if product.price < price:
+                        product.price = price
+                    return product
+        new_product = (cls(name, description, price, availability))
+        return new_product
 
     @property
     def price(self):
