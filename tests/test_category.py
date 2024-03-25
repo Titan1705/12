@@ -20,7 +20,3 @@ def test_init(category_test):
 def test_add_product(category_test, product_test):
     category_test.add_product(product_test)
     assert len(category_test.product) == 2
-
-
-
-
