@@ -28,4 +28,18 @@ class Category:
         return (f"Категория - {self.name}, описание - {self.description},"
                 f" продукты - {self.__product}|")
 
+    def __len__(self):
+        """ Подсчёт кол-ва продуктов в категории. """
+        product_l = 0
+        for i in self.__product:
+            product_l += i.availability
+        return product_l
+
+    def __str__(self):
+        """
+        Магический метод для строкового отображения объекта
+        """
+        return f'{self.name}, количество продуктов: {len(self)} шт.'
+
+
 

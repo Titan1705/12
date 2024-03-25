@@ -38,3 +38,15 @@ class Product:
             print('Новая цена не соответствует условиям')
         else:
             self.__price = value
+
+    def __str__(self):
+        """
+        Магический метод для строкового отображения объекта
+        """
+        return f'{self.name},{self.__price}руб. Остаток: {self.availability} шт.'
+
+    def __add__(self, other):
+        """ Сложение сумм продуктов """
+        if isinstance(other, self.__class__) and isinstance(self, other.__class__):
+            return self.availability * self.__price + other.availability * other.__price
+        raise TypeError
