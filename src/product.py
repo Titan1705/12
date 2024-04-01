@@ -48,7 +48,6 @@ class Product:
         return f'{self.name},{self.__price}руб. Остаток: {self.availability} шт.'
 
     def __add__(self, other):
-        """ Сложение сумм продуктов """
-        if isinstance(other, self.__class__) and isinstance(self, other.__class__):
-            return self.availability * self.__price + other.availability * other.__price
-        raise TypeError
+        if type(other) == self.__class__:
+            return self.__price * self.availability + other.__price * other.availability
+        return 'Нельзя складывать продукты разных типов'
