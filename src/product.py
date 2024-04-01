@@ -23,7 +23,7 @@ class Product:
         if list_of_products:
             for product in list_of_products:
                 if product.name == name:
-                    product.quantity += availability
+                    product.availability += availability
                     if product.price < price:
                         product.price = price
                     return product

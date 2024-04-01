@@ -12,9 +12,11 @@ class Category:
         Category.number_of_categories += 1
         Category.unique_product += len(product)
 
-    def add_product(self,product):
-        self.__product.append(product)
-        Category.unique_product += 1
+    def add_product(self, product):
+        if isinstance(product, Product):
+            self.__product.append(product)
+        else:
+            raise TypeError
 
     @property
     def product(self):
