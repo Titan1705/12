@@ -3,14 +3,16 @@ class Product:
     description: str
     price: float
     availability: int
+    colour: str
 
     products_list = []
 
-    def __init__(self, name, description, price, availability):
+    def __init__(self, name, description, price, availability, colour=None):
         self.name = name
         self.description = description
         self.__price = price
         self.availability = availability
+        self.colour = colour
 
     @classmethod
     def init_new_product(cls, product_data, list_of_products=None):
@@ -25,7 +27,7 @@ class Product:
                     if product.price < price:
                         product.price = price
                     return product
-        new_product = (cls(name, description, price, availability))
+        new_product = (cls(name, description, price, availability, colour=None))
         return new_product
 
     @property
