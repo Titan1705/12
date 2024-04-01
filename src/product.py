@@ -3,14 +3,16 @@ class Product:
     description: str
     price: float
     availability: int
+    colour: str
 
     products_list = []
 
-    def __init__(self, name, description, price, availability):
+    def __init__(self, name, description, price, availability, colour=None):
         self.name = name
         self.description = description
         self.__price = price
         self.availability = availability
+        self.colour = colour
 
     @classmethod
     def init_new_product(cls, product_data, list_of_products=None):
@@ -21,11 +23,11 @@ class Product:
         if list_of_products:
             for product in list_of_products:
                 if product.name == name:
-                    product.quantity += availability
+                    product.availability += availability
                     if product.price < price:
                         product.price = price
                     return product
-        new_product = (cls(name, description, price, availability))
+        new_product = (cls(name, description, price, availability, colour=None))
         return new_product
 
     @property
@@ -46,7 +48,6 @@ class Product:
         return f'{self.name},{self.__price}руб. Остаток: {self.availability} шт.'
 
     def __add__(self, other):
-        """ Сложение сумм продуктов """
-        if isinstance(other, self.__class__) and isinstance(self, other.__class__):
-            return self.availability * self.__price + other.availability * other.__price
-        raise TypeError
+        if type(other) == self.__class__:
+            return self.__price * self.availability + other.__price * other.availability
+        return 'Нельзя складывать продукты разных типов'
