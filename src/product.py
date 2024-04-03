@@ -1,4 +1,7 @@
-class Product:
+from abc import ABC
+
+
+class Product(ABC):
     name: str
     description: str
     price: float
