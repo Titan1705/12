@@ -1,7 +1,8 @@
+from src.mixin import Mixin
 from src.product import Product
 
 
-class Grass(Product):
+class Grass(Product, Mixin):
     """Класс Трава газонная, наследуется от базового класса продукта"""
     country_of_origin: str    #страна-производитель
     germination_period: int   #срок прорастания
@@ -10,3 +11,6 @@ class Grass(Product):
         super().__init__(name, description, price, availability, colour)
         self.country_of_origin = country_of_origin
         self.germination_period = germination_period
+
+    def __repr__(self):
+        return super().__repr__()

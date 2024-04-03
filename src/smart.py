@@ -1,7 +1,8 @@
+from src.mixin import Mixin
 from src.product import Product
 
 
-class Smartfone(Product):
+class Smartfone(Product, Mixin):
     """Класс SmartFone, наследуется от базового класса продукта"""
     efficiency: int    #производительность
     memory: int   #объем встроенной памяти
@@ -12,3 +13,6 @@ class Smartfone(Product):
         self.efficiency = efficiency
         self.memory = memory
         self.model = model
+
+    def __repr__(self):
+        return super().__repr__()
