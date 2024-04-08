@@ -14,9 +14,12 @@ class Category:
 
     def add_product(self, product):
         if isinstance(product, Product):
-            self.__product.append(product)
+            if product.availability != 0:
+                self.__product.append(product)
+            else:
+                raise TypeError
         else:
-            raise TypeError
+            raise ValueError
 
     @property
     def product(self):
@@ -43,5 +46,9 @@ class Category:
         """
         return f'{self.name}, количество продуктов: {len(self)} шт.'
 
-
+    def func1(self):
+        try:
+            self.add_product()
+        except ValueError:
+            print("товар с нулевым количеством не может быть добавлен")
 
