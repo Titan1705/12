@@ -14,12 +14,10 @@ class Category:
 
     def add_product(self, product):
         if isinstance(product, Product):
-            if product.availability != 0:
-                self.__product.append(product)
-            else:
-                raise TypeError
-        else:
-            raise ValueError
+            if product.availability == 0:
+                raise ValueError("товар с нулевым количеством не может быть добавлен")
+            self.__product.append(product)
+
 
     @property
     def product(self):
@@ -46,20 +44,13 @@ class Category:
         """
         return f'{self.name}, количество продуктов: {len(self)} шт.'
 
-    def func1(self):
-        """Вывод принта ValueError"""
-        try:
-            self.add_product()
-        except ValueError:
-            print("товар с нулевым количеством не может быть добавлен")
-
     def average_price(self):
         """2 задание 16,1 """
         product_sum = 0
-        try:
-            for product in self.__product:
-                product_sum += product.price
-            result = product_sum / len(self.__product)
-            return result
-        except ZeroDivisionError:
-            return 0
+        for product in self.__product:
+            product_sum += product.price
+            try:
+                result = product_sum / len(self)
+                return result
+            except ZeroDivisionError:
+                return 0
