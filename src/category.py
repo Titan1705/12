@@ -18,7 +18,6 @@ class Category:
                 raise ValueError("товар с нулевым количеством не может быть добавлен")
             self.__product.append(product)
 
-
     @property
     def product(self):
         list_of_products = []
@@ -49,8 +48,8 @@ class Category:
         product_sum = 0
         for product in self.__product:
             product_sum += product.price
-            try:
-                result = product_sum / len(self)
-                return result
-            except ZeroDivisionError:
-                return 0
+        try:
+            result = product_sum / len(self)
+            return result
+        except ZeroDivisionError:
+            return 0
